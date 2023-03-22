@@ -14,3 +14,10 @@ amqpProxyPort=5672
 amqpAdminPort=15672  
 amqpMsgIndexEnable=true  
 amqpMultiBundleEnable=true  
+
+You need to build with this PR：  
+https://github.com/streamnative/aop/pull/851  
+
+This pr implements the Rabbitmq management background API.  
+
+![image](https://user-images.githubusercontent.com/38995810/226938238-10917b4b-bb94-4ef5-af57-0305ef2816b4.png)
