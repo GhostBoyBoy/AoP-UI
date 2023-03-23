@@ -606,6 +606,7 @@ var is_user_policymaker;         // ...user is not a policymaker
 var user_monitor;                // ...user cannot monitor
 var nodes_interesting;           // ...we are not in a cluster
 var vhosts_interesting;          // ...there is only one vhost
+var tenants_interesting;          // ...there is only one vhost
 var queue_type;
 var rabbit_versions_interesting; // ...all cluster nodes run the same version
 var disable_stats;               // ...disable all stats, management only mode
@@ -637,9 +638,9 @@ function setup_global_vars() {
     exchange_types = overview.exchange_types.map(function(xt) { return xt.name; });
 
     cluster_name = fmt_escape_html(overview.cluster_name);
-    $('#logout').before(
-      '<li>Cluster ' + (user_administrator ?  '<a href="#/cluster-name">' + cluster_name + '</a>' : cluster_name) + '</li>'
-    );
+    // $('#logout').before(
+    //   '<li>Cluster ' + (user_administrator ?  '<a href="#/cluster-name">' + cluster_name + '</a>' : cluster_name) + '</li>'
+    // );
 
     user_name = fmt_escape_html(user.name);
     $('#header #logout').prepend(
@@ -761,7 +762,10 @@ var outstanding_reqs = [];
 var current_highlight;
 
 // Which vhost are we looking at
-var current_vhost = '';
+var current_vhost = '/';
+
+// Which tenant are we looking at
+var current_tenant = 'amqp';
 
 // What is our current sort order
 var current_sort;

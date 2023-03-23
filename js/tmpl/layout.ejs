@@ -22,6 +22,11 @@
         <!--<option value="">All</option>-->
       </select>
     </li>
+    <li id="tenant">
+      <label for="show-tenant">Cluster </label>
+      <select id="show-tenant">
+      </select>
+    </li>
     <li id="logout">
     <% if (enable_uaa) { %>
       <input type="submit" id="loginWindow" onclick="uaa_logout_window()" value="Log out"/>

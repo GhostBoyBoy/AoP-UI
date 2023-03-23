@@ -129,6 +129,7 @@ function check_login() {
         setup_global_vars();
         setup_constant_events();
         update_vhosts();
+        update_tenants();
         update_interval();
         setup_extensions();
     }
@@ -202,13 +203,49 @@ function setup_constant_events() {
             store_pref('vhost', current_vhost);
             update();
         });
+    $('#show-tenant').on('change', function() {
+        current_tenant = $(this).val();
+        store_pref('tenant', current_tenant);
+        update();
+        update_vhosts();
+    });
+    if (!tenants_interesting) {
+        $('#tenant-form').hide();
+    }
     if (!vhosts_interesting) {
         $('#vhost-form').hide();
     }
 }
 
+function update_tenants() {
+    var tenants = JSON.parse(sync_get('/tenants'));
+    tenants_interesting = tenants.length > 1;
+    if (tenants_interesting)
+        $('#tenant-form').show();
+    else
+        $('#tenant-form').hide();
+    var select = $('#show-tenant').get(0);
+    // 去除All vhost选项
+    select.options.length = tenants.length;
+    var index = 0;
+    for (var i = 0; i < tenants.length; i++) {
+        var tenant = tenants[i].name;
+        select.options[i] = new Option(tenant, tenant);
+        if (tenant == current_tenant) index = i;
+    }
+    select.selectedIndex = index;
+    current_tenant = select.options[index].value;
+    store_pref('tenant', current_tenant);
+}
+
 function update_vhosts() {
-    var vhosts = JSON.parse(sync_get('/vhosts'));
+    var vhosts
+    try {
+        vhosts = JSON.parse(sync_get('/vhosts'));
+    } catch (e) {
+        $('#show-vhost').get(0).find('option').remove();
+        return;
+    }
     vhosts_interesting = vhosts.length > 1;
     if (vhosts_interesting)
         $('#vhost-form').show();
@@ -1191,6 +1228,7 @@ function with_req(method, path, body, fun) {
         req.setRequestHeader('authorization', header);
     }
     req.setRequestHeader('x-vhost', current_vhost);
+    req.setRequestHeader('tenant', current_tenant);
     req.setRequestHeader('content-type', 'application/json');
     req.onreadystatechange = function () {
         if (req.readyState == 4) {
@@ -1249,6 +1287,8 @@ function sync_req(type, params0, path_template, options) {
     }
     var req = xmlHttpRequest();
     req.open(type, 'http://172.20.123.82:15672/api' + path, false);
+    req.setRequestHeader('x-vhost', current_vhost);
+    req.setRequestHeader('tenant', current_tenant);
     req.setRequestHeader('content-type', 'application/json');
     req.setRequestHeader('authorization', auth_header());
 

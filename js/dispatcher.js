@@ -173,6 +173,22 @@ dispatcher_add(function(sammy) {
             return false;
         });
 
+    sammy.put('#/tenants', function() {
+        if (sync_put(this, '/tenants/:name')) {
+            update_tenants();
+            update();
+        }
+        return false;
+    });
+    sammy.del('#/tenants', function() {
+        if (sync_delete(this, '/tenants/:name')) {
+            update_tenants();
+            go_to('#/tenants');
+        }
+        return false;
+    });
+
+
     path('#/users', {'users': {path:    '/users',
                                options: {sort:true}},
                      'permissions': '/permissions'}, 'users');
