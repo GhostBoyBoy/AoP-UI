@@ -204,6 +204,7 @@ function setup_constant_events() {
             update();
         });
     $('#show-tenant').on('change', function() {
+        window.location.href="/#/"
         current_tenant = $(this).val();
         store_pref('tenant', current_tenant);
         update();
