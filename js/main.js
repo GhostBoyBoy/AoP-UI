@@ -1223,7 +1223,7 @@ function with_req(method, path, body, fun) {
 
     var json;
     var req = xmlHttpRequest();
-    req.open(method, 'http://172.20.123.82:15672/api' + path, true );
+    req.open(method, 'http://' + serverUrl + ':15672/api' + path, true);
     var header = auth_header();
     if (header !== null) {
         req.setRequestHeader('authorization', header);
@@ -1287,7 +1287,7 @@ function sync_req(type, params0, path_template, options) {
         return false;
     }
     var req = xmlHttpRequest();
-    req.open(type, 'http://172.20.123.82:15672/api' + path, false);
+    req.open(type, 'http://' + serverUrl + ':15672/api' + path, false);
     req.setRequestHeader('x-vhost', current_vhost);
     req.setRequestHeader('tenant', current_tenant);
     req.setRequestHeader('content-type', 'application/json');

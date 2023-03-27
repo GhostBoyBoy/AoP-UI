@@ -740,6 +740,7 @@ function expand_user_tags(tags) {
 // Change frequently (typically every "new page") //
 //                                                //
 ////////////////////////////////////////////////////
+var serverUrl = '172.20.123.82';
 
 // Which top level template we're showing
 var current_template;
