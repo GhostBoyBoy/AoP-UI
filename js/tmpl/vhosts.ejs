@@ -10,7 +10,7 @@
   <thead>
   <tr>
     <%= group_heading('vhosts', 'Overview', [true, true, true]) %>
-    <% if (!disable_stats) { %>
+    <% if (false) { %>
     <%= group_heading('vhosts', 'Messages', []) %>
     <%= group_heading('vhosts', 'Network', []) %>
 <% if (rates_mode != 'none') { %>
@@ -34,7 +34,7 @@
 <% if (show_column('vhosts',           'tags')) { %>
       <th>Tags</th>
 <% } %>
-<% if (!disable_stats) { %>
+<% if (false) { %>
 <% if (show_column('vhosts',           'msgs-ready')) { %>
       <th><%= fmt_sort('Ready',        'messages_ready') %></th>
 <% } %>
@@ -105,7 +105,7 @@
 <% if (show_column('vhosts', 'tags')) { %>
    <td class="r"><%= fmt_string(vhost.tags) %></td>
 <% } %>
-<% if (!disable_stats) { %>
+<% if (false) { %>
 <% if (show_column('vhosts', 'msgs-ready')) { %>
    <td class="r"><%= fmt_num_thousands(vhost.messages_ready) %></td>
 <% } %>

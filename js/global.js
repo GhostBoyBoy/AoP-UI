@@ -602,7 +602,7 @@ var vhosts_interesting;          // ...there is only one vhost
 var tenants_interesting;          // ...there is only one vhost
 var queue_type;
 var rabbit_versions_interesting; // ...all cluster nodes run the same version
-var disable_stats = true;               // ...disable all stats, management only mode
+var disable_stats;               // ...disable all stats, management only mode
 
 // Extensions write to this, the dispatcher maker reads it
 var dispatcher_modules = [];
@@ -740,7 +740,7 @@ function expand_user_tags(tags) {
 // Change frequently (typically every "new page") //
 //                                                //
 ////////////////////////////////////////////////////
-var serverUrl = '172.20.123.82';
+var serverUrl = document.domain;
 
 // Which top level template we're showing
 var current_template;
