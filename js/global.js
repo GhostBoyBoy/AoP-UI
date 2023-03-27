@@ -44,14 +44,7 @@ var NAVIGATION = {'Overview':    ['#/',            "management"],
                   'Channels':    ['#/channels',    "management"],
                   'Exchanges':   ['#/exchanges',   "management"],
                   'Queues':      ['#/queues',      "management"],
-                  'Admin':
-                    [{'Users':         ['#/users',              "administrator"],
-                      'Virtual Hosts': ['#/vhosts',             "administrator"],
-                      'Feature Flags': ['#/feature-flags',      "administrator"],
-                      'Policies':      ['#/policies',           "management"],
-                      'Limits':        ['#/limits',             "management"],
-                      'Cluster':       ['#/cluster-name',       "administrator"]},
-                     "management"]
+                  'Vhosts':      ['#/vhosts',      "management"],
                  };
 
 var CHART_RANGES = {'global': [], 'basic': []};
@@ -609,7 +602,7 @@ var vhosts_interesting;          // ...there is only one vhost
 var tenants_interesting;          // ...there is only one vhost
 var queue_type;
 var rabbit_versions_interesting; // ...all cluster nodes run the same version
-var disable_stats;               // ...disable all stats, management only mode
+var disable_stats = true;               // ...disable all stats, management only mode
 
 // Extensions write to this, the dispatcher maker reads it
 var dispatcher_modules = [];
