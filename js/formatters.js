@@ -774,10 +774,10 @@ function _link_to(name, url, highlight, args) {
         var purpose = args['x-internal-purpose'];
         title = 'This is used internally by the ' + purpose + ' mechanism.';
     }
-    /*return '<a href="' + url + '"' +
+    return '<a href="' + url + '"' +
         (title ? ' title="' + title + '"' : '') + '>' +
         (highlight ? fmt_highlight_filter(name) : fmt_escape_html(name)) +
-        '</a>';*/
+        '</a>';
     return '<a>' +
         (highlight ? fmt_highlight_filter(name) : fmt_escape_html(name)) +
         '</a>';

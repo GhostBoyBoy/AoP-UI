@@ -33,8 +33,8 @@ dispatcher_add(function(sammy) {
     });
 });
 
-NAVIGATION['Admin'][0]['Top Processes']  = ['#/top', 'administrator'];
-NAVIGATION['Admin'][0]['Top ETS Tables'] = ['#/top/ets', 'administrator'];
+// NAVIGATION['Admin'][0]['Top Processes']  = ['#/top', 'administrator'];
+// NAVIGATION['Admin'][0]['Top ETS Tables'] = ['#/top/ets', 'administrator'];
 
 HELP['gen-server2-buffer'] = "The processes with a <strong>gen_server2 buffer</strong> value of <code>\>= 0</code> are of type gen_server2. " +
     "They drain their Erlang mailbox into an internal queue as an optimisation. " +
