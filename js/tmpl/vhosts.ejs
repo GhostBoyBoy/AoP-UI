@@ -67,7 +67,8 @@
          var vhost = vhosts[i];
     %>
        <tr<%= alt_rows(i)%>>
-         <td><%= link_vhost(vhost.name) %></td>
+           <!--link_vhost(vhost.name)-->
+         <td><%= vhost.name %></td>
          <!--<td class="c"><%= fmt_permissions(vhost, permissions, 'vhost', 'user',
                            '<p class="warning">No users</p>') %></td>-->
          <td><%= fmt_vhost_state(vhost) %></td>

@@ -83,11 +83,12 @@
 <% } %>
 <% if(connection.client_properties) { %>
     <td>
-      <%= link_conn(connection.name) %>
+      <!--link_conn(connection.name)-->
+      <%= connection.name %>
       <sub><%= fmt_string(short_conn(connection.client_properties.connection_name)) %></sub>
     </td>
 <% } else { %>
-    <td><%= link_conn(connection.name) %></td>
+    <td><%= connection.name %></td>
 <% } %>
 <% if (nodes_interesting) { %>
     <td><%= fmt_node(connection.node) %></td>

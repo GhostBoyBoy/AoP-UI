@@ -130,7 +130,8 @@
 %>
   <tr<%= alt_rows(i)%>>
     <td>
-      <%= link_channel(channel.name) %>
+      <!--link_channel(channel.name)-->
+      <%= channel.name %>
     </td>
 <% if (mode == 'standalone' && nodes_interesting) { %>
     <td><%= fmt_node(channel.node) %></td>
