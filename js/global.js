@@ -323,6 +323,11 @@ var HELP = {
       incoming network traffic until the amount of free space exceeds \
       the limit.',
 
+    'message-id':'<p>The message id is from the pulsar_message_position field in headers</p>',
+
+    'return-messages':'<p>Query by time range. The number of returned messages is not more than 200. ' +
+        'If the message is not what you want, you should shorten the query time range\n</p>',
+
     'message-get-requeue':
       '<p>Clicking "Get Message(s)" will consume messages from the queue. \
       If requeue is set the message will be put back into the queue in place, \

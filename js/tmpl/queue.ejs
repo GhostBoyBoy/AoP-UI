@@ -278,23 +278,23 @@
   <h2>Get messages</h2>
   <div class="hider">
     <p>
-      Warning: getting messages from a queue is a destructive action.
-      <span class="help" id="message-get-requeue"></span>
+      Warning: If the number of query results exceeds 200, the query stops. You should narrow the time range or query the results by message ID .
     </p>
     <form action="#/queues/get" method="post">
       <input type="hidden" name="vhost" value="<%= fmt_string(queue.vhost) %>"/>
       <input type="hidden" name="name" value="<%= fmt_string(queue.name) %>"/>
-      <input type="hidden" name="truncate" value="50000"/>
+<!--      <input type="hidden" name="truncate" value="50000"/>-->
       <table class="form">
         <tr>
-          <th><label>Ack Mode:</label></th>
+          <th><label>Start Time:</label></th>
           <td>
-            <select name="ackmode">
-                <option value="ack_requeue_true" selected>Nack message requeue true</option>
-                <option value="ack_requeue_false">Ack message requeue false</option>
-                <option value="reject_requeue_true">Reject requeue true</option>
-                <option value="reject_requeue_false">Reject requeue false</option>
-            </select>
+              <input type="datetime-local" step="1" name="startTime"/>
+          </td>
+        </tr>
+        <tr>
+          <th><label>End Time:</label></th>
+          <td>
+              <input type="datetime-local" step="1" name="endTime"/>
           </td>
         </tr>
         <tr>
@@ -308,8 +308,12 @@
           </td>
         </tr>
         <tr>
-          <th><label>Messages:</label></th>
-          <td><input type="text" name="count" value="1"/></td>
+          <th><label>MessageId <span class="help" id="message-id"></span>:</label></th>
+          <td><input type="text" name="messageId"/></td>
+        </tr>
+        <tr>
+          <th><label>Return messages<span class="help" id="return-messages"></span>:</label></th>
+          <td><input type="text" name="messages"/></td>
         </tr>
       </table>
       <input type="submit" value="Get Message(s)" />

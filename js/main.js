@@ -1128,6 +1128,7 @@ function publish_msg0(params) {
 }
 
 function get_msgs(params) {
+    replace_content('msg-wrapper', '');
     var path = fill_path_template('/queues/:vhost/:name/get', params);
     with_req('POST', path, JSON.stringify(params), function(resp) {
             var msgs = JSON.parse(resp.responseText);
@@ -1177,6 +1178,7 @@ function format(template, json) {
         clearInterval(timer);
         console.log("Uncaught error: " + err);
         console.log("Stack: " + err['stack']);
+        replace_content('debug', '');
         debug(err['name'] + ": " + err['message'] + "\n" + err['stack'] + "\n");
     }
 }
@@ -1332,6 +1334,7 @@ function check_bad_response(req, full_page_404) {
     // 1223 == 204 - see https://www.enhanceie.com/ie/bugs.asp
     // MSIE7 and 8 appear to do this in response to HTTP 204.
     if ((req.status >= 200 && req.status < 300) || req.status == 1223) {
+        replace_content('debug', '');
         return true;
     }
     else if (req.status == 404 && full_page_404) {
@@ -1378,6 +1381,7 @@ function check_bad_response(req, full_page_404) {
         update_status('error');
     }
     else {
+        replace_content('debug', '');
         debug("Management API returned status code " + req.status + " - <strong>" + fmt_escape_html_one_line(req.responseText) + "</strong>");
         clearInterval(timer);
     }
